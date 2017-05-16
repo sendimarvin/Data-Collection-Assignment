@@ -1,0 +1,177 @@
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
+  <h:head>
+    <h:title>wifi_form</h:title>
+    <model>
+      <instance>
+        <data id="build_wifi-form_1494895390">
+          <meta>
+            <instanceID/>
+          </meta>
+          <page_1>
+            <name/>
+            <password/>
+            <location/>
+            <photo/>
+          </page_1>
+          <page_2>
+            <coverage_radius/>
+            <wifi_type>
+              open
+            </wifi_type>
+            <signal_strength/>
+            <indoor_outdoor/>
+            <maximun_users/>
+          </page_2>
+        </data>
+      </instance>
+      <itext>
+        <translation lang="English">
+          <text id="/data/page_1:label">
+            <value></value>
+          </text>
+          <text id="/data/page_1/name:label">
+            <value>what is the WIFI name (SSID)?</value>
+          </text>
+          <text id="/data/page_1/password:label">
+            <value>what is the WIFI password?</value>
+          </text>
+          <text id="/data/page_1/photo:label">
+            <value>take a photo of the location.</value>
+          </text>
+          <text id="/data/page_2:label">
+            <value></value>
+          </text>
+          <text id="/data/page_2/coverage_radius:label">
+            <value>enter coverage radius in meters</value>
+          </text>
+          <text id="/data/page_2/wifi_type:label">
+            <value>what is the WIFI type</value>
+          </text>
+          <text id="/data/page_2/wifi_type:hint">
+            <value>open</value>
+          </text>
+          <text id="/data/page_2/wifi_type:option0">
+            <value>open</value>
+          </text>
+          <text id="/data/page_2/wifi_type:option1">
+            <value>WPA PSK</value>
+          </text>
+          <text id="/data/page_2/wifi_type:option2">
+            <value>WPA2 PSK</value>
+          </text>
+          <text id="/data/page_2/signal_strength:label">
+            <value>how many bars do you have currently</value>
+          </text>
+          <text id="/data/page_2/signal_strength:option0">
+            <value>one</value>
+          </text>
+          <text id="/data/page_2/signal_strength:option1">
+            <value>two</value>
+          </text>
+          <text id="/data/page_2/signal_strength:option2">
+            <value>three</value>
+          </text>
+          <text id="/data/page_2/signal_strength:option3">
+            <value>four</value>
+          </text>
+          <text id="/data/page_2/indoor_outdoor:label">
+            <value>indoor or outdoor WIFI</value>
+          </text>
+          <text id="/data/page_2/indoor_outdoor:option0">
+            <value>indoor</value>
+          </text>
+          <text id="/data/page_2/indoor_outdoor:option1">
+            <value>outdoor</value>
+          </text>
+          <text id="/data/page_2/maximun_users:label">
+            <value>what are the maximum number of users</value>
+          </text>
+          <text id="/data/page_2/maximun_users:constraintMsg">
+            <value>impossible range</value>
+          </text>
+        </translation>
+      </itext>
+      <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+      <bind nodeset="/data/page_1/name" type="string" required="true()"/>
+      <bind nodeset="/data/page_1/password" type="string"/>
+      <bind nodeset="/data/page_1/location" type="geopoint"/>
+      <bind nodeset="/data/page_1/photo" type="binary"/>
+      <bind nodeset="/data/page_2/coverage_radius" type="int"/>
+      <bind nodeset="/data/page_2/wifi_type" type="select1"/>
+      <bind nodeset="/data/page_2/signal_strength" type="select1"/>
+      <bind nodeset="/data/page_2/indoor_outdoor" type="select1"/>
+      <bind nodeset="/data/page_2/maximun_users" type="int" constraint="(. &gt;= '1') and (. &lt;= '100')" jr:constraintMsg="jr:itext('/data/page_2/maximun_users:constraintMsg')"/>
+    </model>
+  </h:head>
+  <h:body>
+    <group appearance="field-list">
+      <label ref="jr:itext('/data/page_1:label')"/>
+      <input ref="/data/page_1/name">
+        <label ref="jr:itext('/data/page_1/name:label')"/>
+      </input>
+      <input ref="/data/page_1/password">
+        <label ref="jr:itext('/data/page_1/password:label')"/>
+      </input>
+      <input ref="/data/page_1/location">
+      </input>
+      <upload ref="/data/page_1/photo" mediatype="image/*">
+        <label ref="jr:itext('/data/page_1/photo:label')"/>
+      </upload>
+    </group>
+    <group appearance="field-list">
+      <label ref="jr:itext('/data/page_2:label')"/>
+      <input ref="/data/page_2/coverage_radius">
+        <label ref="jr:itext('/data/page_2/coverage_radius:label')"/>
+      </input>
+      <select1 ref="/data/page_2/wifi_type">
+        <label ref="jr:itext('/data/page_2/wifi_type:label')"/>
+        <hint ref="jr:itext('/data/page_2/wifi_type:hint')"/>
+        <item>
+          <label ref="jr:itext('/data/page_2/wifi_type:option0')"/>
+          <value>open</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/wifi_type:option1')"/>
+          <value>wpa_psk</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/wifi_type:option2')"/>
+          <value>wpa2_psk</value>
+        </item>
+      </select1>
+      <select1 ref="/data/page_2/signal_strength">
+        <label ref="jr:itext('/data/page_2/signal_strength:label')"/>
+        <item>
+          <label ref="jr:itext('/data/page_2/signal_strength:option0')"/>
+          <value>one</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/signal_strength:option1')"/>
+          <value>two</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/signal_strength:option2')"/>
+          <value>three</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/signal_strength:option3')"/>
+          <value>four</value>
+        </item>
+      </select1>
+      <select1 ref="/data/page_2/indoor_outdoor">
+        <label ref="jr:itext('/data/page_2/indoor_outdoor:label')"/>
+        <item>
+          <label ref="jr:itext('/data/page_2/indoor_outdoor:option0')"/>
+          <value>indoor</value>
+        </item>
+        <item>
+          <label ref="jr:itext('/data/page_2/indoor_outdoor:option1')"/>
+          <value>outdoor</value>
+        </item>
+      </select1>
+      <input ref="/data/page_2/maximun_users">
+        <label ref="jr:itext('/data/page_2/maximun_users:label')"/>
+      </input>
+    </group>
+  </h:body>
+</h:html>
